@@ -9,6 +9,7 @@ verify_ssl = true
 fastapi = {extras = ["all"],version = "*"}
 motor = "*"
 email-validator = "*"
+arrow = "*"
 
 [requires]
 python_version = "3.6"

@@ -9,8 +9,7 @@ class DBConnection:
 
     @classmethod
     def create_client(cls):
-        env_pass = os.environ.get('MONGO_PASSWORD')
-        password = urllib.parse.quote_plus(env_pass)
+        password = os.environ.get('MONGO_ATLAS')
         env_mongo_uri = os.environ.get('MONGO_DB_URI')
         mongo_client = motor.motor_asyncio.AsyncIOMotorClient(env_mongo_uri)
         return mongo_client
@@ -40,17 +39,17 @@ class DBConnection:
         mongo_db = mongo_client.news_links
 
         if app_link == AppLinkModel.brazil:
-            collection = mongo_db.brazil_links_footbalteam
+            collection = mongo_db.brazil_links_footballteam
         elif app_link == AppLinkModel.deutschland:
-            collection = mongo_db.deutschland_links_footbalteam
+            collection = mongo_db.deutschland_links_footballteam
         elif app_link == AppLinkModel.espana:
-            collection = mongo_db.espana_links_footbalteam
+            collection = mongo_db.espana_links_footballteam
         elif app_link == AppLinkModel.nederland:
-            collection = mongo_db.netherlands_links_footbalteam
+            collection = mongo_db.netherlands_links_footballteam
         elif app_link == AppLinkModel.sverige:
-            collection = mongo_db.sverige_links_footbalteam
+            collection = mongo_db.sverige_links_footballteam
         else:
-            collection = mongo_db.norge_links_footbalteam
+            collection = mongo_db.norge_links_footballteam
 
         return collection
 

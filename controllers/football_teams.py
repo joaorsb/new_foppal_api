@@ -10,14 +10,16 @@ router = APIRouter()
 
 
 @router.get("/{app_link}/{league}", response_model=List[FootballTeam])
-async def root(app_link: AppLinkModel, league: str, page: Optional[int] = None):
+async def root(app_link: AppLinkModel, league: str):
     collection = DBConnection.create_teams_connection(app_link)
-    documents = collection.find({'league': league})
-    if page and page > 1:
-        skip_counter = 25 * (page - 1)
-        documents.skip(skip_counter)
-    news = []
-    async for doc in documents.limit(25):
-        news.append(doc)
+    if app_link.value == 'brazil' or app_link.value == 'espana':
+        league_name = league
+    else:
+        league.title()
 
-    return news
+    documents = collection.find({"league": league_name})
+    teams = []
+    async for doc in documents:
+        teams.append(doc)
+
+    return teams
