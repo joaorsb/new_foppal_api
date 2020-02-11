@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 from typing import List, Optional
 
 from services.db import DBConnection
@@ -10,7 +10,10 @@ router = APIRouter()
 
 
 @router.get("/{app_link}", response_model=List[NewsLink])
-async def root(app_link: AppLinkModel, page: Optional[int] = None):
+async def root(
+        app_link: AppLinkModel,
+        page: int = Query(None)
+    ):
     collection = DBConnection.create_main_connection(app_link)
     documents = collection.find({"visible": True}).sort('publishing_date', -1)
     if page and page > 1:
