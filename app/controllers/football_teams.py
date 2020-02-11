@@ -1,9 +1,8 @@
 from fastapi import APIRouter
-from typing import List, Optional
+from typing import List
 
-from services.db import DBConnection
-from models.app_link_model import AppLinkModel
-from models.team_model import FootballTeam
+from app.services import DBConnection
+from app.models import AppLinkModel, FootballTeam
 
 
 router = APIRouter()
@@ -11,6 +10,12 @@ router = APIRouter()
 
 @router.get("/{app_link}/{league}", response_model=List[FootballTeam])
 async def root(app_link: AppLinkModel, league: str):
+    """
+        Get the list of clubs based on given country and league
+    :param app_link: Country name
+    :param league: League name
+    :return: List of football clubs
+    """
     collection = DBConnection.create_teams_connection(app_link)
     if app_link.value == 'brazil' or app_link.value == 'espana':
         league_name = league
