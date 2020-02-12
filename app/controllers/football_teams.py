@@ -20,7 +20,7 @@ async def root(app_link: AppLinkModel, league: str):
     if app_link.value == 'brazil' or app_link.value == 'espana':
         league_name = league
     else:
-        league.title()
+        league_name = league.title()
 
     documents = collection.find({"league": league_name})
     teams = []
