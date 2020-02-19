@@ -10,8 +10,8 @@ class DBConnection:
     def create_client(cls):
         password = os.environ.get('MONGO_ATLAS')
         env_mongo_uri = os.environ.get('MONGO_DB_URI')
-        # mongo_client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://mongo:27017')
-        mongo_client = motor.motor_asyncio.AsyncIOMotorClient(env_mongo_uri)
+        mongo_client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://mongo:27017')
+        # mongo_client = motor.motor_asyncio.AsyncIOMotorClient(env_mongo_uri)
         return mongo_client
 
     @staticmethod

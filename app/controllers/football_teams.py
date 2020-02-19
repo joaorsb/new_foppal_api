@@ -19,6 +19,8 @@ async def root(app_link: AppLinkModel, league: str):
     collection = DBConnection.create_teams_connection(app_link)
     if app_link.value == 'brazil' or app_link.value == 'espana':
         league_name = league
+    elif league == "postnord":
+        league_name = "PostNord"
     else:
         league_name = league.title()
 
