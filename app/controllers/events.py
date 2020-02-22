@@ -28,7 +28,7 @@ async def root(app_link: AppLinkModel, league: str, season_year: str):
 
 
 @router.get("/{app_link}/{league}/{season_year}/next_round", response_model=List[Event])
-async def root(app_link: AppLinkModel, league: str, season_year: str):
+async def next_round_events(app_link: AppLinkModel, league: str, season_year: str):
     """
         Get next round for given country/league/year
     :param app_link: country
@@ -58,9 +58,10 @@ async def root(app_link: AppLinkModel, league: str, season_year: str):
 
 
 @router.get("/{app_link}/{league}/{season_year}/round/{league_round_id}", response_model=List[Event])
-async def root(app_link: AppLinkModel, league: str, season_year: str, league_round_id: int):
+async def events_by_round_id(app_link: AppLinkModel, league: str, season_year: str, league_round_id: int):
     """
         Get events(matches) by Country, league, year for especific round based on its id
+    :param league_round_id:  Round number
     :param app_link: Country
     :param league: league name from SofaScore
     :param season_year: year

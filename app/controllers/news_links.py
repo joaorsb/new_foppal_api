@@ -11,17 +11,22 @@ router = APIRouter()
 @router.get("/{app_link}", response_model=List[NewsLink])
 async def get_all_links(
         app_link: AppLinkModel,
-        page: int = Query(None)
+        page: int = Query(None),
+        lang: str = Query(None)
 ):
 
     """
     Main view for news links based on country
+    :param lang: Optional language
     :param app_link: Country name
     :param page: query param for pagination
     :return: List of News
     """
     collection = DBConnection.create_main_connection(app_link)
-    documents = collection.find({"visible": True}).sort('publishing_date', -1)
+    if lang:
+        documents = collection.find({ "visible": True, 'language': lang }).sort('publishing_date', -1)
+    else:
+        documents = collection.find({ "visible": True }).sort('publishing_date', -1)
     if page and page > 1:
         skip_counter = 25 * (page - 1)
         documents.skip(skip_counter)
@@ -35,18 +40,23 @@ async def get_all_links(
 @router.get("/{app_link}/recent/{last_date}", response_model=List[NewsLink])
 async def get_recent_links(
         app_link: AppLinkModel,
-        last_date: str
+        last_date: str,
+        lang: str = Query(None)
 ):
 
     """
     Get most recent news for country/date
+    :param lang: Optional language
     :param app_link: Country name
     :param last_date: date string 
     :return: List of News
     """
     collection = DBConnection.create_main_connection(app_link)
     parsed_date = arrow.get(last_date).datetime
-    documents = collection.find({"visible": True, "publishing_date": { "$gt": parsed_date}}).sort('publishing_date')
+    if lang:
+        documents = collection.find({ "visible": True, 'language': lang, "publishing_date": { "$gt": parsed_date} }).sort('publishing_date')
+    else:
+        documents = collection.find({"visible": True, "publishing_date": { "$gt": parsed_date}}).sort('publishing_date')
     news = []
     async for doc in documents:
         news.append(doc)
