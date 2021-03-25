@@ -1,49 +1,47 @@
 -i https://pypi.org/simple/
-aiofiles==0.5.0
+aiofiles==0.6.0
 aniso8601==7.0.0
 arrow==0.15.5
 async-exit-stack==1.0.1
 async-generator==1.10
-attrs==19.3.0
-certifi==2020.6.20
-chardet==3.0.4
+attrs==20.3.0
+certifi==2020.12.5
+chardet==4.0.0
 click==7.1.2
-dataclasses==0.7 ; python_version < '3.7'
-dnspython==2.0.0
+dataclasses==0.8 ; python_version < '3.7'
+dnspython==2.1.0
 email-validator==1.0.5
 fastapi[all]==0.48.0
 graphene==2.1.8
 graphql-core==2.3.2
 graphql-relay==2.0.1
 gunicorn==20.0.4
-h11==0.9.0
-httptools==0.1.1 ; sys_platform != 'win32' and sys_platform != 'cygwin' and platform_python_implementation != 'PyPy'
+h11==0.12.0
 idna==2.10
-importlib-metadata==1.7.0 ; python_version < '3.8'
+importlib-metadata==3.7.3 ; python_version < '3.8'
 itsdangerous==1.1.0
-jinja2==2.11.2
+jinja2==2.11.3
 markupsafe==1.1.1
-more-itertools==8.4.0
+more-itertools==8.7.0
 motor==2.1.0
-packaging==20.4
+packaging==20.9
 pluggy==0.13.1
 promise==2.3
-py==1.9.0
-pydantic==1.6.1
-pymongo==3.10.1
+py==1.10.0
+pydantic==1.8.1
+pymongo==3.11.3
 pyparsing==2.4.7
 pytest==5.3.5
 python-dateutil==2.8.1
 python-multipart==0.0.5
-pyyaml==5.3.1
-requests==2.24.0
+pyyaml==5.4
+requests==2.25.1
 rx==1.6.1
 six==1.15.0
 starlette==0.12.9
-ujson==3.0.0
-urllib3==1.25.10
-uvicorn==0.11.7
-uvloop==0.14.0 ; sys_platform != 'win32' and sys_platform != 'cygwin' and platform_python_implementation != 'PyPy'
+typing-extensions==3.7.4.3 ; python_version < '3.8'
+ujson==4.0.2
+urllib3==1.26.4
+uvicorn==0.13.4
 wcwidth==0.2.5
-websockets==8.1
-zipp==3.1.0
+zipp==3.4.1
